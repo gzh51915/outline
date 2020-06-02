@@ -14,7 +14,7 @@ Router.get('/',(req,res)=>{
     }])
 })
 Router.post('/goods',(req,res)=>{ //增
-
+    // db.create('goods')
 })
 
 // 查询id为某个值的商品

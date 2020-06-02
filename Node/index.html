@@ -6,24 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Node服务器</h1>
+    <h1>Node服务器-首页</h1>
     <script>
-        const xhr = new XMLHttpRequest();
-        xhr.onload = ()=>{
-            // const data = JSON.prase(xhr.responseText);// 报错，代码会停止执行
-            let data;
-            try{
-                data = JSON.parse(xhr.responseText);
-            }catch(error){
-                console.log('err=',error)
-                // 如果try里的代码有错误，会执行这里的代码
-                data = xhr.responseText;
-            }
+        // const xhr = new XMLHttpRequest();
+        // xhr.onload = ()=>{
+        //     // const data = JSON.prase(xhr.responseText);// 报错，代码会停止执行
+        //     let data;
+        //     try{
+        //         data = JSON.parse(xhr.responseText);
+        //     }catch(error){
+        //         console.log('err=',error)
+        //         // 如果try里的代码有错误，会执行这里的代码
+        //         data = xhr.responseText;
+        //     }
 
-            console.log('data=',data)
-        }
-        xhr.open('post','http://localhost:1915/api/user',true);
-        xhr.send('user=laoxie&password=123')
+        //     console.log('data=',data)
+        // }
+        // xhr.open('post','http://localhost:1915/api/user',true);
+        // xhr.send('user=laoxie&password=123')
     </script>
 </body>
 </html>

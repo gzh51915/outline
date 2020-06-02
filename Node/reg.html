@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>注册</h1>
+    <p>
+        <label>用户名：</label>
+        <input type="text" name="username" id="username" />
+    </p>
+    <p>
+        <label>密码：</label>
+        <input type="password" name="password" id="password" />
+    </p>
+    <button id="btnReg">注册</button>
+    <script>
+        const username = document.getElementById('username')
+        const password = document.getElementById('password')
+        const btnReg = document.getElementById('btnReg')
+
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+           const res = JSON.parse(xhr.responseText)
+        }
+        btnReg.onclick = ()=>{
+            const _username = username.value;
+            const _password = password.value;
+            xhr.open('post', '/api/user', true); // 避免hard code
+
+            // 设置请求头
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+            xhr.send(`username=${_username}&password=${_password}`)
+        }
+    </script>
+</body>
+
+</html>

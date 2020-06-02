@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>登录</h1>
+    <p>
+        <label>用户名：</label>
+        <input type="text" name="username" id="username" />
+    </p>
+    <p>
+        <label>密码：</label>
+        <input type="password" name="password" id="password" />
+    </p>
+    <button id="btnLogin">登录</button>
+    <script>
+        const username = document.getElementById('username')
+        const password = document.getElementById('password')
+        const btnLogin = document.getElementById('btnLogin')
+
+        // 判断用户是否已经登录
+        const authorization = localStorage.getItem('authorization');
+        if(authorization){
+            // location.href="/index.html";
+            const xhr_verify = new XMLHttpRequest();
+            xhr_verify.onload = ()=>{
+                const res = JSON.parse(xhr_verify.responseText);
+                if(res.code === 200){
+                    location.href="/index.html";
+                }else{
+                    localStorage.removeItem('authorization')
+                }
+            }
+            xhr_verify.open('get','/api/user/verify?authorization='+authorization,true);
+            xhr_verify.send();
+        }
+
+
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+           const res = JSON.parse(xhr.responseText);
+           if(res.code === 200){
+               if(res.data && res.data.authorization){
+                   localStorage.setItem('authorization',res.data.authorization)
+               }
+               location.href="/index.html";
+           }else{
+               alert('用户或密码错误')
+           }
+        }
+        btnLogin.onclick = ()=>{
+            const _username = username.value;
+            const _password = password.value;
+            xhr.open('post', '/api/user/login', true); // 避免hard code
+
+            // 设置请求头
+            xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+            xhr.send(`username=${_username}&password=${_password}`)
+        }
+    </script>
+</body>
+
+</html>
