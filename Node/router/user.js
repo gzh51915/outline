@@ -17,22 +17,33 @@ Router.get('/',(req,res)=>{
 // 注册：添加一个用户
 Router.post('/',async (req,res)=>{
     // 获取username,password
-    const {username,password} = req.body;
+    const {username,password,vcode} = req.body;
+    console.log('vcode=',vcode,req.session.vcode);
 
-    // 写入数据库
-    try{
-        await db.create('user',{username,password,regtime:new Date()})
-        console.log('user=',username,password)
-        res.send({
-            code:200
-        })
+    if(vcode.toLowerCase() === req.session.vcode){
 
-    }catch(err){
-        console.log('err=',err)
+        // 写入数据库
+        try{
+            await db.create('user',{username,password,regtime:new Date()})
+            console.log('user=',username,password)
+            res.send({
+                code:200
+            })
+    
+        }catch(err){
+            console.log('err=',err)
+            res.send({
+                code:400
+            })
+        }
+
+        delete req.session.vcode;
+    }else{
         res.send({
-            code:400
+            code:401
         })
     }
+
 
 })
 
