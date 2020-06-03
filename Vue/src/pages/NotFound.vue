@@ -1,15 +1,13 @@
 <template>
     <div>
-        <router-view/>
+        404
     </div>
 </template>
 <script>
 export default {
-    name:'App',
+    
 }
 </script>
-<style lang='scss'>
- div{
-     span{color:#f00}
- }
+<style>
+
 </style>

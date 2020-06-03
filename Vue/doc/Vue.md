@@ -68,8 +68,7 @@
 ```
 
 ```html
-    <script type='text/javascript' src="vue.js">
-
+    <script type='text/javascript' src="vue.js"/>
 ```
 
 ## 组件层级结构
@@ -78,4 +77,66 @@
     * $parent
     * $children
     * $root
-* 在组件通讯或组件编写过程中常用到这些结构属性       
+* 在组件通讯或组件编写过程中常用到这些结构属性
+
+## 插槽slot
+    * 默认插槽
+    * 命名插槽
+    * 作用域插槽
+### 组件的可定制化
+
+
+## Vue Router
+* mode: history || hash
+    * hash路由的原理：window.onhashchange = ()=>{}
+    * history路由的原理：HTML5 history api中的pushState()和replaceState()
+
+###  SPA（Sign Page Application） & MPA
+    * history路由：不管访问什么地址，都应该响应index.html的内容（静态资源除外）
+
+    ```js
+        const express = require('express');
+        const app = express();
+
+        // 内置中间件：利用中间件实现静态资源服务器（加上__dirname，可在任意目录运行程序，如：npm start）
+        app.use(express.static(path.join(__dirname,'./public')));
+
+        // history路由服务器配置
+        app.use((req,res)=>{
+            let content  = fs.readFileSync(path.join(__dirname,'./public/index.html'));
+            res.set('Content-Type','text/html; charset=utf-8');
+            res.send(content)
+        })
+
+    ```
+### 路由拦截
+* router.beforeEach((to,from,next)=>{
+
+})
+* router.afterEach(()=>{})
+
+## VueX
+* 核心
+    * state                 data
+    * getters               computed
+    * mutations             methods
+    * actions               methods
+* 使用
+    1. 创建store
+    2. 注入store到Vue实例
+    3. this.$store使用
+* 注意事项
+    * state只能在mutaiton中修改
+    ```js
+        this.$store.commit('changeName','xiaoxie');
+    ```
+    * 触发action
+    ```js
+        this.$store.dispatch('changeName',1234);
+
+        this.$store.state.user.username;
+    ```
+    * 模块化 vuex后写法的改变
+    ```js
+        this.$store.state.user -> this.$store.state.common.user
+    ```
