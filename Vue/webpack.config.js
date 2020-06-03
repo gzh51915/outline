@@ -13,6 +13,15 @@ module.exports = {
         // proxy:{} 代理（正向代理和反响代理）
     },
 
+    resolve:{
+        alias:{
+            // 'vue$':path.join(__dirname,'node_modules/vue/dist/vue.js')
+            '@': path.join(__dirname,'src'),
+            '~':path.join(__dirname,'src/components'),
+        },
+        extensions:['.js','.vue']
+    },
+
     // 加载器
     module:{
         rules:[
