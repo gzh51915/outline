@@ -78,6 +78,23 @@
 * 函数组件（无状态组件，UI组件）
     * 推荐使用
     * 必须有返回值
-* 类组件（状态组件）
+* 类组件（状态组件,容器组件）
     * 必须包含render方法
         * render方法必须有返回值
+
+## 配置基于webpack的react项目环境
+
+### 依赖
+* react & react-dom
+* webpack & webpack-cli & webpack-dev-server
+* @babel/core & babel-loader & @babel/preset-react
+* html-webpack-plugin
+
+### 热更新
+devServer{
+    hot:true
+}
+
+### react事件绑定
+* 驼峰
+* 事件处理函数默认没有this指向
