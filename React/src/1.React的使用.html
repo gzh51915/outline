@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="./lib/babel.min.js"></script>
+</head>
+<body>
+    <h1>React的使用</h1>
+    <div id="app">
+        <!-- <div class="container">
+            <h2>虚拟节点</h2>
+            <p>测试</p>
+        </div> -->
+    </div>
+    <script type="text/babel">
+        // ReactDOM.render(content,target)
+        // ReactDOM.render(
+        //     React.createElement('div',{className:'container'},[
+        //         React.createElement('h2',null,'虚拟节点'),
+        //         React.createElement('p',null,'测试'),
+        //     ]),
+        //     document.getElementById('app')
+        // )
+
+        // JSX
+        ReactDOM.render(
+            <div className='container'> 
+                <h2>虚拟节点</h2>
+                <p>测试</p>
+            </div>
+            ,
+            document.getElementById('app')
+        )
+    </script>
+</body>
+</html>
