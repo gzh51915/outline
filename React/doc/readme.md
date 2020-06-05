@@ -147,3 +147,49 @@ devServer{
 
 * Render Props
 > 告诉组件如何渲染内容的prop传递方式称为render Props
+
+### 生命周期函数
+* Initial: 初始化阶段
+    * constructon
+* Mounting：挂载阶段
+    * componentWillMount
+    * componentDidMount
+* Updating：更新阶段
+    * componentWillUpdate
+    * componentDidUpdate
+* Unmounting：卸载阶段
+    * componentWillUnmount
+
+* 特殊生命周期函数
+    * shouldComponentUpdate 
+        * 必须返回boolean，默认返回true
+        * 一般用于性能优化
+        
+* 组件更新的条件
+    * state有改变
+    * props有改变
+* 类组件性能优化
+    * shouldComponentUpdate
+    * componentWillUnmount
+        * 取消ajax请求
+            * XMLHttpRequest()  -> xhr.abort()
+            * axios     -> 
+            * fetch     -> 无法取消
+        * 清除定时器
+    * PureComponent
+
+* props数据类型校验
+    * 给组件设置**静态属性**：propTypes
+* props默认值
+    * 给祖教你设置静态属性：defaultProps
+    ```js
+        MyComponent.defaultProps = {}
+        MyComponent.propTypes = {}
+
+        // ES
+        // 需要bable插件的支持：@babel/plugin-proposal-class-properties
+        static defaultProps = {}
+        static propTypes = {}
+
+
+    ```

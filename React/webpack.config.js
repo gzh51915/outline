@@ -31,7 +31,9 @@ module.exports = {
                     loader:'babel-loader',
                     options:{
                         presets:['@babel/preset-react'],
-                        // plugins:[]
+                        plugins:[
+                            '@babel/plugin-proposal-class-properties'
+                        ]
                     }
                 }]
             }
