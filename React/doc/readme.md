@@ -1,5 +1,7 @@
 # React
 
+# Day5-4
+
 ## 前端框架历史
 1. Angular
     * 双向数据绑定
@@ -98,3 +100,50 @@ devServer{
 ### react事件绑定
 * 驼峰
 * 事件处理函数默认没有this指向
+
+# Day5-5
+
+## 复习
+* React特点
+    * 虚拟DOM+diff算法
+    * 单向数据流
+    * JSX
+
+* 渲染方法与创建节点方法
+    * ReactDOM.render()
+    * React.createElement()
+
+* 解析JSX的方式
+    * 浏览器端（运行时runtime）解析: babel
+    * 编译阶段解析
+        * webpack
+* React的使用
+    * React组件
+        * 函数组件（无状态组件，UI组件）
+        * 类组件（状态组件，容器组件）
+    * 状态改变与组件刷新
+        > 数据的改变一定是创建一个新的数据并覆盖
+        * this.setState(state,callback)
+            * 异步
+            * 自动合并
+        * this.setState((prevState)=>{},callback)
+            * 根据上一次的state值进行操作
+
+## 知识点
+* 组件通讯
+    * props
+* 深层次组件通讯
+    * context
+
+* 受控组件与非受控组件
+    * 非受控组件：不受React组件控制，而是通过节点操作去实现
+    * 受控组件：受到React组件的控制
+
+* 事件处理函数
+    * this指向
+        * 改变this指向: bind
+    * 传参
+    * event对象：事件处理函数的最后一个参数
+
+* Render Props
+> 告诉组件如何渲染内容的prop传递方式称为render Props

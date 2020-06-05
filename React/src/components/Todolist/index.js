@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 import TodoContent from './TodoContent'
+import TodoForm from './TodoForm'
+
+import MyContext from './MyContext'
 
 class Todolist extends Component {
     constructor() {
@@ -48,7 +51,7 @@ class Todolist extends Component {
         // setState是异步
         // this.state.curent = 20 // 不推荐
         this.setState({
-            current: 2,
+            // current: 2,
             data
         }, () => {
             // 发起请求
@@ -74,10 +77,26 @@ class Todolist extends Component {
         })
     }
     render() {
+        const {createItem,removeItem,completeItem} = this;
+        const {data} = this.state;
+        const doneList = data.filter(item=>item.done)
+        const undoneList = data.filter(item=>!item.done)
         return (
             <div>
-                {/* <TodoForm/> */}
-                <TodoContent data={this.state.data} onComplete={this.completeItem} />
+                <MyContext.Provider value={{createItem,removeItem,completeItem}}>
+                    <TodoForm/>
+                    <TodoContent data={data} renderFooter={
+                       (value)=>(
+                        <div>
+                            <span>总数：{data.length}</span>
+                            <span>完成：{doneList.length}</span>
+                            <span>未完成：{undoneList.length}</span>
+                        </div>
+                       )
+                    }>
+                        
+                    </TodoContent>
+                </MyContext.Provider>
             </div>
         )
     }

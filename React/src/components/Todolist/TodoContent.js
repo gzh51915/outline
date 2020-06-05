@@ -2,7 +2,7 @@ import React from 'react'
 
 import TodoItem from './TodoItem'
 
-function TodoContent({data,onComplete}) {
+function TodoContent({ data, children,renderFooter }) {
     return (
         <table>
             <thead>
@@ -16,9 +16,16 @@ function TodoContent({data,onComplete}) {
             </thead>
             <tbody>
                 {
-                    data.map((item,idx)=><TodoItem data={item} index={idx} key={item.id} onComplete={onComplete}/>)
+                    data.map((item, idx) => <TodoItem data={item} index={idx} key={item.id} />)
                 }
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colSpan="5">
+                        {renderFooter(100)}
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     )
 }
