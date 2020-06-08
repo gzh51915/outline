@@ -72,6 +72,10 @@
 
 ## JSX
 * 规则
+* React.createElement()
+```js
+    const container = <div></div> // React.createElement() => {}
+```
 
 
 ## 组件化开发
@@ -179,6 +183,7 @@ devServer{
     * PureComponent
 
 * props数据类型校验
+    * 官方模块：`prop-types`
     * 给组件设置**静态属性**：propTypes
 * props默认值
     * 给祖教你设置静态属性：defaultProps
@@ -190,6 +195,4 @@ devServer{
         // 需要bable插件的支持：@babel/plugin-proposal-class-properties
         static defaultProps = {}
         static propTypes = {}
-
-
     ```
