@@ -1,7 +1,9 @@
 import React, { Component,PureComponent } from 'react'
+import {withUser} from '../utils/hoc'
 
 import './Home.css'
 
+@withUser
 class Home extends Component {
     // 给实例添加属性
     // static defaultProps = {
@@ -46,5 +48,7 @@ class Home extends Component {
         )
     }
 }
+
+// Home = withUser(Home)
 
 export default Home;

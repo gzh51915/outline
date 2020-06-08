@@ -3,6 +3,9 @@ import React from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Reg from './pages/Reg';
+import Cart from './pages/Cart';
+import Goods from './pages/Goods';
+import Category from './pages/Category';
 
 import { Route,HashRouter,BrowserRouter,Link,NavLink,Redirect,Switch,withRouter } from 'react-router-dom';
 
@@ -34,6 +37,9 @@ function App(props) {
                     <Route path="/home" component={Home} />
                     <Route path="/login" component={Login} />
                     <Route path="/reg" component={Reg} />
+                    <Route path="/cart" component={Cart} />
+                    <Route path="/cate" component={Category}/>
+                    <Route path="/goods/:id" component={Goods} />
                     <Route path="/notfound" component={()=><div>404</div>} />
                     <Redirect from="/" to="/home" exact /> 
                     <Redirect to="/notfound" /> 
