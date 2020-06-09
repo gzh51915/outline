@@ -28,7 +28,6 @@
 2. 创建修改store的方法： reducer
 
 
-
 ## redux核心
 * store
     * getState()        获取store最新状态
@@ -37,3 +36,26 @@
 * state
 * reducer
 * action
+
+
+
+## 面试题
+* 覆盖第三方组件样式
+    * 写全局样式
+    * 组件局部样式
+        * /deep/
+        * >>>
+    * vue组件中写带有特定选择器的全局样式
+    ```html
+        <style scoped>
+
+        </style>
+        <style>
+            .home xxxx{}
+        </style>
+    ```
+* 父组件调用子组件的方法
+    * 组建层级
+        * $parent   得到父组件实例
+        * $children 得到子组件实例
+        * ref

@@ -6,9 +6,10 @@
   "directories": {
     "doc": "doc"
   },
-  "dependencies": { 
+  "dependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
+    "antd": "^4.3.3",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
     "html-webpack-plugin": "^4.3.0",

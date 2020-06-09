@@ -9,6 +9,7 @@ import Category from './pages/Category';
 
 import { Route,HashRouter,BrowserRouter,Link,NavLink,Redirect,Switch,withRouter } from 'react-router-dom';
 
+import 'antd/dist/antd.css'
 
 function App(props) {
     console.log('App',props);

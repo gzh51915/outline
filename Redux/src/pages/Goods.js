@@ -1,23 +1,14 @@
 import React, { Component, PureComponent } from 'react'
-
-import store from '../store';
-
-console.log('state:',store.getState());
-store.subscribe(()=>{
-    console.log(666);
-    console.log('newState=',JSON.stringify(store.getState()));
-})
+import http from '../utils/http'
 
 class Goods extends Component {
 
-    componentDidMount() {
+    async componentDidMount() {
         const { id } = this.props.match.params
         // ajax()
+        const {data} = await http.get('/goods/'+id);
 
-
-        const action = {type:'CHANGE_USER',user:{username:'jingjing',age:30}};
-        store.dispatch(action);
-        
+        console.log('data=',data)
     }
     render() {
         console.log('goods=', this.props)

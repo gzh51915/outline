@@ -1,49 +1,44 @@
-import React, { Component,PureComponent } from 'react'
-import {withUser} from '../utils/hoc'
+import React, { Component, PureComponent } from 'react'
+import { List, Avatar } from 'antd'
+import { withUser } from '../utils/hoc'
+import http from '../utils/http'
 
 import './Home.css'
 
-@withUser
 class Home extends Component {
-    // 给实例添加属性
-    // static defaultProps = {
-
-    // }
-    // 给实例添加方法
-    gotoLogin = ()=>{
-        console.log(this.props);
-        const {history} = this.props;
-        // 只要获取到history对象就可以进行跳转
-        // 等效于Link中的to属性
-        history.push('/login')
-
+    state = {
+        goodslist: []
     }
-    gotoReg = ()=>{
-        const {history} = this.props;
-        history.push({
-            pathname:'/reg',
-            search:'?id=123',
-            state:{
-                username:'laoxie'
-            }
+    async componentDidMount() {
+        // const res = await fetch('http://localhost:1915/api/goods');
+        // console.log('result=',await res.json())
+        const { data } = await http.get('/goods');
+        this.setState({
+            goodslist: data
         })
     }
-    
-    // 给原型添加方法
-    // gotoReg(){
+    gotoDetail = (id)=>{
+        const {history} = this.props
 
-    // }
+        history.push('/goods/'+id);
+    }
     render() {
-        console.log('Home',this);
+        const { goodslist } = this.state;
         return (
             <div>
-                {/* <header className='header'>
-                    <button onClick={this.gotoReg}>注册</button>
-                    <button onClick={this.gotoLogin}>登录</button>
-                </header> */}
-                Home
-
-
+                <List
+                    itemLayout="horizontal"
+                    dataSource={goodslist}
+                    renderItem={item => (
+                        <List.Item onClick={this.gotoDetail.bind(this,item._id)}>
+                            <List.Item.Meta
+                                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                                title={item.name}
+                                description={<div className="price"><del>{(item.sale_price / 0.8).toFixed(2)}</del><span>{item.sale_price.toFixed(2)}</span></div>}
+                            />
+                        </List.Item>
+                    )}
+                />
             </div>
         )
     }

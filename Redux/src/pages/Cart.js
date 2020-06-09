@@ -15,6 +15,12 @@ class Cart extends Component {
         console.log('Cart.componentDidMount')
 
         console.log('Cart=',store.getState())
+
+        // store.subscribe(()=>{
+        //     this.setState({
+
+        //     })
+        // })
     }
     render() {
         return (
