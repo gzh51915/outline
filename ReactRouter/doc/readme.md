@@ -134,3 +134,31 @@
         * ...
 
 
+## 面试题
+* 如何用数组的map方法获取到一组dom节点的内容
+```js
+    const lis = document.getElementsByTagName('li'); // 类数组
+    lis.map(item=>{// lis.map is not a function
+
+    });
+
+    Array.from(lis).map(item=>item.innerText);
+    Array.prototype.map.call(lis,item=>item.innerText);
+```
+* html5新特性
+    * 新标签，新表单类型
+    * Canvas
+    * Audio/Video
+    * SVG
+    * webStorage（localStorage+sesstionStorage）
+    * webSocket
+    * Promise
+    * Worker
+    * Draggable
+    * FormData
+    * ...
+
+* 项目优化
+    * 性能优化
+    * 用户体验优化
+    * seo优化
