@@ -8,47 +8,49 @@ import Goods from './pages/Goods';
 import Category from './pages/Category';
 
 import { Route, HashRouter, BrowserRouter, Link, NavLink, Redirect, Switch, withRouter } from 'react-router-dom';
-import { Layout, Button, Badge,Row,Col } from 'antd'
-import { ShoppingCartOutlined,AliyunOutlined } from '@ant-design/icons';
+import { Layout, Button, Badge, Row, Col } from 'antd'
+import { ShoppingCartOutlined, AliyunOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
 import 'antd/dist/antd.css'
 
 const { Header, Content, Sider, Footer } = Layout
+
 
 function App(props) {
     console.log('App', props);
     const { history } = props;
     const goto = (path) => {
-        history.replace(path);
+        history.push(path);
     }
     return (
         <Layout>
-            <Header style={{padding:'0 20px'}}>
+            <Header style={{ padding: '0 20px' }}>
                 {/* <Home a={10} username='laoxie' />
                 <Login />
                 <Reg /> */}
                 <header className='header'>
-                <Row>
-                    <Col span={12} style={{textAlign:'left'}}>
-                        <AliyunOutlined style={{color:'#fff',fontSize:40,verticalAlign:'middle'}} onClick={()=>{
-                            goto('/home')
-                        }} />
-                    </Col>
-                    <Col span={12} style={{textAlign:'right'}}>
-                        <Badge count={5} showZero>
-                        <Button type="link" icon={<ShoppingCartOutlined />} onClick={() => {
-                            goto('/cart')
-                        }}>购物车</Button>
-                    </Badge>
+                    <Row>
+                        <Col span={12} style={{ textAlign: 'left' }}>
+                            <AliyunOutlined style={{ color: '#fff', fontSize: 40, verticalAlign: 'middle' }} onClick={() => {
+                                goto('/home')
+                            }} />
+                        </Col>
+                        <Col span={12} style={{ textAlign: 'right' }}>
+                            <Badge count={props.cartCount} showZero>
+                                <Button type="link" icon={<ShoppingCartOutlined />} onClick={() => {
+                                    goto('/cart')
+                                }}>购物车</Button>
+                            </Badge>
 
-                    <Button type="link" onClick={() => {
-                        goto('/reg')
-                    }}>注册</Button>
-                    <Button type="link" onClick={() => {
-                        goto('/login')
-                    }}>登录</Button>
-                    </Col>
-                </Row>
-                    
+                            <Button type="link" onClick={() => {
+                                goto('/reg')
+                            }}>注册</Button>
+                            <Button type="link" onClick={() => {
+                                goto('/login')
+                            }}>登录</Button>
+                        </Col>
+                    </Row>
+
                 </header>
 
             </Header>
@@ -86,5 +88,8 @@ function App(props) {
 
 App = withRouter(App);
 
+App = connect(state => ({
+    cartCount: state.cart.cartlist.length
+}))(App);
 
 export default App;

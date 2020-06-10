@@ -4,7 +4,9 @@ const initState = {
         username: 'laoxie'
     },
     menuVisible: true,
-    cartlist:[]
+    cart: {
+        cartlist: [{ "_id": "5c128dc0afe9c8dcfcc6e1e2", "name": "天梭TISSOT-库图系列 T035.617.11.051.00 石英男表", "model": "", "category": "天梭", "price": 0, "sale_price": 3080, "add_time": 1544719807634,qty:4 }, { "_id": "5c128dc0afe9c8dcfcc6e1e3", "name": "天梭TISSOT-库图系列 T035.210.16.051.00 石英女表", "model": "", "category": "天梭", "price": 0, "sale_price": 1750, "add_time": 1544719807634 ,qty:1}],
+    }
 }
 
 /**
@@ -14,22 +16,68 @@ const initState = {
  * @param {Object} action   {type:'CHANGE_USER',user},{type:'CHANGE_MENU_VISIBLE'}
  */
 function reducer(state = initState, action) {
-    switch(action.type){
+    switch (action.type) {
         case 'CHANGE_USER':
             return {
                 ...state,
-                user:action.user
+                user: action.user
             }
         case 'CHANGE_MENU_VISIBLE':
             return {
                 ...state,
-                menuVisible:action.menuVisible
+                menuVisible: action.menuVisible
             }
-        
+
+        // 购物车操作
+        // {type:'ADD_TO_CART',goods}
+        case 'ADD_TO_CART':
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    cartlist: [action.goods, ...state.cart.cartlist]
+                }
+            }
+
+        // {type:'REMOVE_FROM_CART',_id}
+        case 'REMOVE_FROM_CART':
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    cartlist: state.cart.cartlist.filter(item => item._id !== action._id)
+                }
+            }
+        // {type:'CLEAR_CART'}
+        case 'CLEAR_CART':
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    cartlist: []
+                }
+            }
+
+        // {type:'CHANGE_GOODS_QTY',_id,qty}
+        case 'CHANGE_GOODS_QTY':
+            const cartlist = state.cart.cartlist.map(item => {
+                if (item._id === action._id) {
+                    item.qty = action.qty;
+                }
+                return item;
+            });
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    cartlist
+                }
+            }
+
         default:
             // 如果以上条件都不满足，则返回最新的state
             return state;
-        
+
     }
 }
 

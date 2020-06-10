@@ -1,18 +1,53 @@
 import React, { Component, PureComponent } from 'react'
-import {Button} from 'antd';
+import { Button } from 'antd';
 import http from '../utils/http'
+import { connect } from 'react-redux'
 
+const mapStateToProps = ({ cart }) => {
+    return {
+        cartlist: cart.cartlist
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        add2cart(goods) {
+            dispatch({
+                type: 'ADD_TO_CART',
+                goods
+            })
+        },
+        changeQty(_id, qty) {
+            dispatch({
+                type: 'CHANGE_GOODS_QTY',
+                _id,
+                qty
+            })
+        }
+    }
+}
 
-
+@connect(mapStateToProps, mapDispatchToProps)
 class Goods extends Component {
     state = {
         data: {}
     }
-    add2cart = ()=>{
-        
+    add2cart = () => {
+        const { data } = this.state;
+        const { add2cart, changeQty, cartlist } = this.props;
+        // 判断当前商品是否已经存在购物车中
+        // 存在：数量++
+        // 不存在：添加到购物车
+        const goods = cartlist.filter(item => item._id === data._id)[0];
+        if (goods) {
+            changeQty(goods._id, goods.qty + 1);
+        } else {
+            data.qty = 1;
+            add2cart(data);
+        }
+
     }
-    buynow = ()=>{
-        const {history} = this.props;
+    buynow = () => {
+        const { history } = this.props;
         this.add2cart();
         history.push('/cart')
     }

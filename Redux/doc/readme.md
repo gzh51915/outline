@@ -59,3 +59,24 @@
         * $parent   得到父组件实例
         * $children 得到子组件实例
         * ref
+
+## React-redux
+* 利用context跨组件通讯的特点，并结合高阶组件实现redux数据的共享（通过props实现）
+* react-redux内置组件：`<Provider/>`
+* react-redux封装的高阶组件：`connect()`
+
+### 使用react-redux共享数据步骤
+1. 利用`Provider`共享`store`
+2. 在需要的组件上利用高阶组件`connect()`定义store共享的数据
+
+* connect的理解
+```js 
+    function connect(InnerComponent){
+        return function(){
+            return function(){
+                return <InnerComponent {...store}/>
+
+            }
+        }
+    }
+```
