@@ -50,7 +50,8 @@ module.exports = {
     // 插件
     plugins:[
         new htmlWebpackPlugin({
-            template:'./src/template.html'
+            template:'./src/template.html',
+            title:'GZH51915'
         })
     ]
 }

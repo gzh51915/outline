@@ -19,23 +19,24 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => {
-    // return {
-    //     changeQty(_id, qty) {
-    //         // dispatch({ type: 'CHANGE_GOODS_QTY', _id: item._id, qty })
-    //         dispatch(cartAction.changeQty(_id, qty))
-    //     },
-    //     clearCart() {
-    //         // dispatch({ type: 'CLEAR_CART' })
-    //         dispatch(cartAction.clear())
-    //     },
-    //     removeItem(_id) {
-    //         // dispatch({ type: 'REMOVE_FROM_CART', _id })
-    //         dispatch(cartAction.remove(_id))
-    //     }
-    // }
+    return {
+        changeQty(_id, qty) {
+            // dispatch({ type: 'CHANGE_GOODS_QTY', _id: item._id, qty })
+            dispatch({ type: 'CHANGE_GOODS_QTY_ASYNC', _id, qty })
+            // dispatch(cartAction.changeQty(_id, qty))
+        },
+        clear() {
+            // dispatch({ type: 'CLEAR_CART' })
+            dispatch(cartAction.clear())
+        },
+        remove(_id) {
+            // dispatch({ type: 'REMOVE_FROM_CART', _id })
+            dispatch(cartAction.remove(_id))
+        }
+    }
 
     // 利用bindActionCreators简化操作
-    return bindActionCreators(cartAction,dispatch)
+    // return bindActionCreators(cartAction,dispatch)
 }
 
 @connect(mapStateToProps, mapDispatchToProps)

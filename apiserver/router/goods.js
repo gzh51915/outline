@@ -36,6 +36,15 @@ Router.post('/', (req, res) => { //增
     // db.create('goods')
 })
 
+// 获取库存数量
+Router.get('/kucun',(req,res)=>{
+    res.send({
+        code:1,
+        data:4,
+        msg:'success'
+    })
+})
+
 // 查询id为某个值的商品
 Router.get('/:id', async (req, res) => {
     const { id } = req.params;

@@ -82,3 +82,71 @@
 
 ### redux模块化、
 > reducer的模块化
+
+### redux中间件
+
+* redux调试工具
+    1. redux-devtools
+    2. npm i  redux-devtools-extension
+    3. 使用
+    ```js
+        const middleware = composeWithDevTools();
+        const store = createStore(reducer,middleware);
+    ```
+* 使用redux中间件步骤
+
+
+### ES6知识
+* for...of与迭代器
+```js
+    // Map,Set
+    // for...of
+    const arr = [{},{}]
+    for(let i=0;i<arr.length;i++){
+        arr[i];
+        // break;
+    }
+
+    for(let key in obj){
+
+    }
+
+    // for ... of 能遍历具有迭代器特性的数据
+    for(let item of arr){
+        // break
+    }
+
+    arr.forEach((item)=>{
+        // 不能中途停止
+    })
+
+```
+* Generator生成器函数
+    * return 返回一个值，结束迭代器
+    * yield 返回一个值，暂停迭代器
+```js
+// 定义
+    function * show(){
+        console.log('start')
+        yield 100;
+    }
+
+    // 返回一个迭代器
+    const it = show();//undefined，而是得到一个迭代器
+
+
+    // 每个迭代器都有一个next方法，调用next方法才会执行生成器函数中的代码
+    // 调用next方法返回一个对象，格式为：{value,done}
+    console.log(it)
+
+```
+
+* redux-sagad的使用
+    1. 引入redux-saga
+    2. 创建saga中间件
+
+* vuex
+    * state
+    * mutations
+    * actions
+        * 副作用
