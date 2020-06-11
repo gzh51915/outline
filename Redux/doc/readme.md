@@ -72,11 +72,13 @@
 * connect的理解
 ```js 
     function connect(InnerComponent){
-        return function(){
+        return function(mapStateToProps,mapDispatchToProps){
             return function(){
                 return <InnerComponent {...store}/>
-
             }
         }
     }
 ```
+
+### redux模块化、
+> reducer的模块化

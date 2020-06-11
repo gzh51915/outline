@@ -1,29 +1,40 @@
 import React, { Component, PureComponent } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Button } from 'antd';
 import http from '../utils/http'
-import { connect } from 'react-redux'
+import cartAction from '../store/actions/cart'
 
-const mapStateToProps = ({ cart }) => {
+const mapStateToProps = (state) => {
+    const { cart } = state;
+    console.log('mapStateToProps=', state, cart);
     return {
         cartlist: cart.cartlist
     }
 }
 const mapDispatchToProps = (dispatch) => {
-    return {
-        add2cart(goods) {
-            dispatch({
-                type: 'ADD_TO_CART',
-                goods
-            })
-        },
-        changeQty(_id, qty) {
-            dispatch({
-                type: 'CHANGE_GOODS_QTY',
-                _id,
-                qty
-            })
-        }
-    }
+    // return {
+    //     add2cart(goods) {
+    //         // dispatch({
+    //         //     type: 'ADD_TO_CART',
+    //         //     goods
+    //         // })
+
+    //         // 使用ActionCreator简化
+    //         dispatch(cartAction.add(goods))
+    //     },
+    //     changeQty(_id, qty) {
+    //         // dispatch({
+    //         //     type: 'CHANGE_GOODS_QTY',
+    //         //     _id,
+    //         //     qty
+    //         // })
+    //         dispatch(cartAction.changeQty(_id, qty))
+    //     }
+    // }
+
+    // 利用bindActionCreators简化操作
+    return bindActionCreators(cartAction,dispatch)
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -33,7 +44,7 @@ class Goods extends Component {
     }
     add2cart = () => {
         const { data } = this.state;
-        const { add2cart, changeQty, cartlist } = this.props;
+        const { add2cart, add,changeQty, cartlist } = this.props;
         // 判断当前商品是否已经存在购物车中
         // 存在：数量++
         // 不存在：添加到购物车
@@ -42,7 +53,8 @@ class Goods extends Component {
             changeQty(goods._id, goods.qty + 1);
         } else {
             data.qty = 1;
-            add2cart(data);
+            // add2cart(data);
+            this.props.add(data);
         }
 
     }
@@ -63,7 +75,7 @@ class Goods extends Component {
         })
     }
     render() {
-        // console.log('goods=', this.props)
+        console.log('goods=', this.props)
         const { data } = this.state;
         return (
             <div>

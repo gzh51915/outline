@@ -1,8 +1,10 @@
 import React, { Component, PureComponent } from 'react'
 import { Row, Col, Steps, Button, InputNumber } from 'antd'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { SketchOutlined, CloseOutlined } from '@ant-design/icons';
 import { withUser, withCommon } from '../utils/hoc'
-import { connect } from 'react-redux';
+import cartAction from '../store/actions/cart'
 
 // import store from '../store';
 
@@ -16,8 +18,27 @@ const mapStateToProps = (state) => {
         }, 0)
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    // return {
+    //     changeQty(_id, qty) {
+    //         // dispatch({ type: 'CHANGE_GOODS_QTY', _id: item._id, qty })
+    //         dispatch(cartAction.changeQty(_id, qty))
+    //     },
+    //     clearCart() {
+    //         // dispatch({ type: 'CLEAR_CART' })
+    //         dispatch(cartAction.clear())
+    //     },
+    //     removeItem(_id) {
+    //         // dispatch({ type: 'REMOVE_FROM_CART', _id })
+    //         dispatch(cartAction.remove(_id))
+    //     }
+    // }
 
-@connect(mapStateToProps)
+    // 利用bindActionCreators简化操作
+    return bindActionCreators(cartAction,dispatch)
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Cart extends Component {
     state = {
         // datalist: [{
@@ -35,15 +56,18 @@ class Cart extends Component {
     changeQty = (item, qty) => {
         console.log(item, qty);
         const { dispatch } = this.props;
-        dispatch({ type: 'CHANGE_GOODS_QTY', _id: item._id, qty })
+        // dispatch({ type: 'CHANGE_GOODS_QTY', _id: item._id, qty })
+        this.props.changeQty(item._id, qty)
     }
     clearCart = () => {
         const { dispatch } = this.props;
-        dispatch({ type: 'CLEAR_CART' })
+        // dispatch({ type: 'CLEAR_CART' })
+        this.props.clear();
     }
     removeItem = (_id) => {
         const { dispatch } = this.props;
-        dispatch({ type: 'REMOVE_FROM_CART', _id })
+        // dispatch({ type: 'REMOVE_FROM_CART', _id })
+        this.props.remove(_id)
     }
     componentDidMount() {
 
