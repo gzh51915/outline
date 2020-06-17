@@ -1,6 +1,6 @@
 import React, { Component, PureComponent } from 'react'
 
-
+console.log('goodspage')
 class Goods extends Component {
 
     componentDidMount() {

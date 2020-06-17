@@ -11,7 +11,7 @@ import { Route, HashRouter, BrowserRouter, Link, NavLink, Redirect, Switch, with
 import { Layout, Button, Badge, Row, Col } from 'antd'
 import { ShoppingCartOutlined, AliyunOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
-import 'antd/dist/antd.css'
+// import 'antd/dist/antd.css'
 
 const { Header, Content, Sider, Footer } = Layout
 

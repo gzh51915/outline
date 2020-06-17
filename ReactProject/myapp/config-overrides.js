@@ -7,6 +7,11 @@ module.exports = function override(config, env) {
         '@':path.join(__dirname,'./src/'),
         '~':path.join(__dirname,'./src/components')
     });
+
+    // if(!config.devServer){
+    //     config.devServer = {}
+    // }
+    // config.devServer.host = '0.0.0.0';
     
     console.log('webpackConfig',config);
     return config;

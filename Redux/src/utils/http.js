@@ -1,5 +1,5 @@
 
-export const apiurl = 'http://localhost:1915/api';
+export const apiurl = process.env.NODE_ENV === 'development' ? 'http://localhost:1915/api' : 'http://52.171.22.68';
 
 const get = async (url,data,params={})=>{
     let query = ''

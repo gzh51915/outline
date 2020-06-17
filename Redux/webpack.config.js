@@ -12,7 +12,8 @@ module.exports = {
 
     // 服务器
     devServer:{
-        contentBase: path.join(__dirname,'public')
+        contentBase: path.join(__dirname,'public'),
+        compress:true, // 启动服务器压缩
     },
 
     // 其他
@@ -37,7 +38,12 @@ module.exports = {
                             ['@babel/plugin-proposal-decorators',{
                                 "legacy": true 
                             }],
-                            ['@babel/plugin-proposal-class-properties',{ "loose": true }]
+                            ['@babel/plugin-proposal-class-properties',{ "loose": true }],
+                            ['babel-plugin-import',{
+                                "libraryName": "antd",
+                                "libraryDirectory": "es",
+                                "style": "css" // `style: true` 会加载 less 文件
+                            }]
                         ]
                     }
                 }]
