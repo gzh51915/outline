@@ -18,7 +18,43 @@
     * useEffect
         > 根据依赖参数与返回值不同实现class组件中componentDidMount、componentDidUpdate、componentWillUnmount的功能
         * 格式：useEffect(fn,[])
-
 * 其他hook
+    * useMemo
+    * useCallback
+    * useContext
+    * useReducer
+    * useRef
+        * current
+    ```js
+        const ref = React.createRef()
+        <input ref={ref}>
+        ref.current
+    ```
+    * useLayoutEffect
+    * useImperativeHandle
+    * useDebugValue
 
 * 自定义hook
+    * hook是一个函数
+    * 命名以'use'开头的命名规范
+
+
+
+### json，json对象，json字符串, js对象
+* json：是一种数据规范
+    * json对象：符合json规范的js对象
+    * json字符串：符合json规范的字符串
+* js对象
+```js
+    var obj = [{
+        name:'laoxie',
+        gender:'male'
+    },{
+        name:'jingjing',
+        gender:'female'
+    }]
+
+    const data = JSON.stringify(obj);// 得到json字符串
+    const result = JSON.parse(data); // 得到json对象
+    JSON.parse(obj);//
+```

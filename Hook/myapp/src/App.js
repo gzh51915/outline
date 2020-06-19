@@ -6,6 +6,7 @@ import UseContext from './hooks/UseContextComponent';
 import UseCallback from './hooks/UseCallbackComponent';
 import UseMemo from './hooks/UseMemoComponent';
 import UseReducer from './hooks/UseReducerComponent';
+import UserDefine from './hooks/UserDefine';
 
 import MyContext from './context';
 
@@ -36,6 +37,7 @@ function App() {
         <UseCallback/>
         <UseMemo/>
         <UseReducer/>
+        <UserDefine/>
       </MyContext.Provider>
     </div>
   );
