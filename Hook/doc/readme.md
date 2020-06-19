@@ -12,8 +12,12 @@
     * 高性能
 
 * 常用Hook
-    * useState： 在函数组件中使用class组件的状态，返回一个数组[state,修改State的方法]
-    * 格式：useState(defaultValue)
+    * useState
+        > 在函数组件中使用class组件的状态，返回一个数组[state,修改State的方法]
+        * 格式：useState(defaultValue)
+    * useEffect
+        > 根据依赖参数与返回值不同实现class组件中componentDidMount、componentDidUpdate、componentWillUnmount的功能
+        * 格式：useEffect(fn,[])
 
 * 其他hook
 
