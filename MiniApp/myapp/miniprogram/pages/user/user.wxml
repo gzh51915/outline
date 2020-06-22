@@ -1,0 +1,16 @@
+<view class="container">
+<view class="title">{{currentClass}}用户列表</view>
+  <view>
+    <view wx:for="{{userlist}}" wx:key="name">
+    {{index+1}} - {{item.name}} - {{item.age}}
+    <view>
+      所带班级：<text wx:for="{{item.classlist}}" wx:key="*this" wx:for-item="classname" wx:for-index="idx"> {{item.name}} - {{classname}}，</text>
+      <button type="primary" bindtap="changeUser" data-user="{{item}}" size="mini">修改用户</button>
+    </view>
+    </view>
+  </view>
+  <view>
+  <input value="{{currentClass}}" bindinput="changeClass" placeholder="班级名称" />
+  </view>
+  <button type="primary" bindtap="changeClass">修改班级名称</button>
+</view>

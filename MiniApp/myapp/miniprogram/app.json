@@ -12,15 +12,33 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
-    "pages/im/room/room"
+    "pages/im/room/room",
+    "pages/list/list",
+    "pages/user/user"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "rgba(0,0,0,.1)",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#58bc58",
+    "navigationBarTitleText": "1915班级管理系统"
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "tabBar": {
+    "position": "top",
+    "backgroundColor": "#f00",
+    "color": "#fff",
+    "selectedColor": "#ff0",
+    "list": [
+      {
+        "pagePath": "pages/user/user",
+        "text": "用户"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "列表"
+      }
+    ],
+    "custom": true
+  }
 }
