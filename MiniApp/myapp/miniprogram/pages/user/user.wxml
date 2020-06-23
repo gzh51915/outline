@@ -3,14 +3,27 @@
   <view>
     <view wx:for="{{userlist}}" wx:key="name">
     {{index+1}} - {{item.name}} - {{item.age}}
-    <view>
+    <!-- <view>
       所带班级：<text wx:for="{{item.classlist}}" wx:key="*this" wx:for-item="classname" wx:for-index="idx"> {{item.name}} - {{classname}}，</text>
-      <button type="primary" bindtap="changeUser" data-user="{{item}}" size="mini">修改用户</button>
-    </view>
+    </view> -->
+      <button type="primary" bindtap="changeUser" data-userid="{{item.id}}" size="mini">修改</button>
+      <button type="warn" bindtap="removeUser" data-userid="{{item.id}}" size="mini" plain>删除</button>
+      <view wx:if="{{currentUserId === item.id}}">
+      <form bindsubmit="saveItem">
+        <view><input placeholder="用户名" name="name" value="{{item.name}}" /></view>
+        <view><input placeholder="密码" name="password" value="{{item.password}}" /></view>
+        <view><input type="number" name="age" value="{{item.age}}" placeholder="年龄" /></view>
+        <picker mode="selector" range="{{item.classlist}}" data-userid="{{item.id}}" bindchange="changeCurrentClass">
+        当前班级： {{item.currentClass}}
+        </picker>
+        <picker mode="date"  value="{{currentDate}}" bindchange="changeDate">
+        日期 {{currentDate}}
+        </picker>
+        <button id="btnSave" data-userid="{{item.id}}" form-type="submit" type="primary" size="mini" plain>保存</button>
+        <button form-type="reset" size="mini" plain>重置</button>
+      
+      </form>
+      </view>
     </view>
   </view>
-  <view>
-  <input value="{{currentClass}}" bindinput="changeClass" placeholder="班级名称" />
-  </view>
-  <button type="primary" bindtap="changeClass">修改班级名称</button>
 </view>
