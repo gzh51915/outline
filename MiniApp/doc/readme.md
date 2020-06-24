@@ -37,6 +37,7 @@
         * wx.reLaunch
 
 ## 班级管理系统接口
+> 地址：http://api.qfh5.cn
 * 班级
     * `get /api/class`      获取所有班级
 

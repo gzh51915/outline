@@ -1,2 +1,15 @@
-<!--pages/class/class.wxml-->
-<text>pages/class/class.wxml</text>
+<wxs src="../../utils/tools.wxs" module="tools" />
+<view>
+  <view class="weui-media-box weui-media-box_text" wx:for="{{datalist}}">
+    <h4 class="weui-media-box__title">{{index+1}} - {{item.name}}</h4>
+    <view class="weui-media-box__desc">注册时间：{{tools.formatDate(item.regtime)}}</view>
+  </view>
+
+  <view class="weui-loadmore" wx:if="{{hasmore}}">
+			<i class="weui-loading"></i>
+			<text class="weui-loadmore__tips">正在加载</text>
+		</view>
+		<view class="weui-loadmore weui-loadmore_line" wx:else>
+			<text class="weui-loadmore__tips">我是有底线的</text>
+		</view>
+</view>

@@ -1,0 +1,9 @@
+function formatDate(date){
+  console.log('date=',date);
+  return getDate(date).toLocaleDateString();
+}
+
+
+module.exports = {
+  formatDate:formatDate
+}
