@@ -1,22 +1,25 @@
 // pages/class/class.js
+// 引入模块
+const request = require('../../utils/request.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    datalist:[],
-    page:1,
-    size:10,
-    hasmore:true
+    datalist: [],
+    page: 1,
+    size: 10,
+    hasmore: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('class',options);
-    const {classid} = options;
+    console.log('class', options);
+    const { classid } = options;
 
     // wx.setNavigationBarTitle({
     //   title:'1810班详情'
@@ -33,7 +36,7 @@ Page({
     // });
     this.setData({
       classid
-    },()=>{
+    }, () => {
       this.getData();
 
     })
@@ -80,12 +83,12 @@ Page({
   onReachBottom: function () {
     console.log('bottom')
     this.setData({
-      page:this.data.page+1
-    },()=>{
+      page: this.data.page + 1
+    }, () => {
       this.getData();
     })
 
-   
+
   },
 
   /**
@@ -94,31 +97,50 @@ Page({
   onShareAppMessage: function () {
 
   },
-  
-  getData(){
-    let {page,size,datalist,classid,hasmore} = this.data;
-    if(!hasmore) return;
-    wx.request({
-      url: 'http://api.qfh5.cn/api/user',
-      data:{
-        class_id:classid,
-        page,
-        size
-      },
-      success:({data})=>{
-        // {data:[],code:200,msg:'succeess',total:40}
-        if(datalist.length>0){
-          datalist = [...datalist,...data.data];
-        }else{
-          datalist = data.data;
-        }
-        console.log(data);
-        this.setData({
-          datalist,
-          hasmore:datalist.length<100
-        })
-        // wx.hideLoading()
-      }
+
+  async getData() {
+    let { page, size, datalist, classid, hasmore } = this.data;
+    if (!hasmore) return;
+    // wx.request({
+    //   url: 'http://api.qfh5.cn/api/user',
+    //   data:{
+    //     class_id:classid,
+    //     page,
+    //     size
+    //   },
+    //   success:({data})=>{
+    //     // {data:[],code:200,msg:'succeess',total:40}
+    //     if(datalist.length>0){
+    //       datalist = [...datalist,...data.data];
+    //     }else{
+    //       datalist = data.data;
+    //     }
+    //     console.log(data);
+    //     this.setData({
+    //       datalist,
+    //       hasmore:datalist.length<100
+    //     })
+    //     // wx.hideLoading()
+    //   }
+    // })
+
+    const { data } = await request.get('/user', {
+      class_id: classid,
+      page,
+      size
     })
+
+    // {data:[],code:200,msg:'succeess',total:40}
+    if (datalist.length > 0) {
+      datalist = [...datalist, ...data.data];
+    } else {
+      datalist = data.data;
+    }
+    console.log(data);
+    this.setData({
+      datalist,
+      hasmore: datalist.length < 100
+    })
+    // wx.hideLoading()
   }
 })

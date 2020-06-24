@@ -1,2 +1,7 @@
-<!--pages/student/student.wxml-->
-<text>pages/student/student.wxml</text>
+
+<import src="../../template.wxml" />
+<view>
+  <login/>
+  <include src="../../template.wxml" />
+</view>
+<template is="imglist" data="{{list:[],imgsrc:''}}" />

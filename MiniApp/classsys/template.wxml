@@ -1,8 +1,7 @@
-
-<import src="../../template.wxml"/>
-<view>
-  <login/>
-  <!-- <view class="weui-media-box weui-media-box_text" wx:for="{{datalist}}">
+<wxs src="./utils/tools.wxs" module="tools" />
+<!-- 定义模板 -->
+<template name="datalist">
+  <view class="weui-media-box weui-media-box_text" wx:for="{{list}}">
     <h4 class="weui-media-box__title">{{index+1}} - {{item.name}}</h4>
     <view class="weui-media-box__desc">注册时间：{{tools.formatDate(item.regtime)}}</view>
   </view>
@@ -13,14 +12,17 @@
 		</view>
 		<view class="weui-loadmore weui-loadmore_line" wx:else>
 			<text class="weui-loadmore__tips">我是有底线的</text>
-		</view> -->
-    <template is="datalist" data="{{list:datalist,hasmore:hasmore}}"/>
-</view>
+		</view>
+</template>
 
-{
-  data(){
-    return {
-      a:100
-    }
-  }
-}
+
+<template name="imglist">
+<view>
+  <image src="" />
+  <template is="datalist" data="{{list:list}}"/>
+</view>
+</template>
+
+<view>
+  <text>include代码</text>
+</view>
