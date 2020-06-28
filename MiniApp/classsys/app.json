@@ -2,6 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/class/class",
+    "pages/camera/camera",
+    "pages/map/map",
     "pages/student/student"
   ],
   "window":{
@@ -14,5 +16,8 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents":{
     "login": "components/login/login"
+  },
+  "permission": {
+   
   }
 }

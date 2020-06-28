@@ -75,6 +75,20 @@
 					"id": -1,
 					"name": "student",
 					"pathName": "pages/student/student",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "camera",
+					"pathName": "pages/camera/camera",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "map",
+					"pathName": "pages/map/map",
 					"scene": null
 				}
 			]

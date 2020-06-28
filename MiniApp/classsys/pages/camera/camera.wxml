@@ -1,0 +1,7 @@
+<view>
+  <view>摄像头</view>
+  <camera device-position="back" flash="off" style="width: 300px; height: 300px;"></camera>
+  <button type="default" plain>拍照</button>
+  <button type="default" plain>录像</button>
+  <button type="default" plain>转换摄像头</button>
+</view>

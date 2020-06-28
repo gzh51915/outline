@@ -121,3 +121,8 @@
         const date = formatDate(new Date())
     </script>
 ```
+
+### 自定义组件
+
+### 第三方组件
+* vant-weapp
