@@ -126,3 +126,82 @@
 
 ### 第三方组件
 * vant-weapp
+
+
+## 云开发
+
+* http与https
+    > ssl证书（公钥与私钥）
+* 加密
+    * 单向加密：不可逆md5
+    * 对称加密
+        * 密钥：laoxie
+        * 过程：明文<->（密钥+算法）<->密文
+        * 优点：速度快
+        * 缺点：不安全
+    * 非对称加密
+        * 公钥：公钥机密的内容私钥解密
+        * 私钥：私钥加密的内容公钥解密
+        * 优点：安全
+        * 缺点：速度慢
+* 解决方案
+    * 对**数据**进行**对称称加密**
+    * 对**密钥**进行**非对称加密**
+
+    * https：非对称加密
+        * 证书：公钥
+
+* nginx 配置ssl
+```
+    server {
+        listen       443 ssl;
+        server_name  offer.xxx.cn;
+
+        ssl_certificate     C:/nginx-1.17.1/ssl/3946648_offer.qfh5.cn.pem;
+        ssl_certificate_key  C:/nginx-1.17.1/ssl/3946648_offer.qfh5.cn.key;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        location / {
+            proxy_pass http://127.0.0.1:9988;
+            proxy_set_header HOST $http_host;
+        }
+    }
+
+```
+
+* nginx反向代理
+```
+    server {
+        listen       80;
+        server_name  localhost;
+        location / {
+            proxy_pass http://127.0.0.1:2010;
+            proxy_set_header HOST $http_host;
+        }
+    }
+    server {
+        listen       80;
+        server_name  vue.qfh5.cn;
+        location / {
+            proxy_pass http://127.0.0.1:2011;
+           # proxy_set_header HOST $http_host;
+        }
+    }
+    server {
+        listen       80;
+        server_name  api.qfh5.cn;
+        location / {
+            proxy_pass http://127.0.0.1:2020;
+            proxy_set_header HOST $http_host;
+        }
+    }
+```
+
+* 正向代理与反向代理
+    * 正向代理代理的是客户端
+    * 反向代理代理的是服务端
