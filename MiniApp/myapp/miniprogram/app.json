@@ -15,7 +15,8 @@
     "pages/im/room/room",
     "pages/list/list",
     "pages/user/user",
-    "pages/dbtest/dbtest"
+    "pages/dbtest/dbtest",
+    "pages/file/file"
   ],
   "window": {
     "backgroundColor": "rgba(0,0,0,.1)",

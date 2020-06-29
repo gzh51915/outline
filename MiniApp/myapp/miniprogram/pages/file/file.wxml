@@ -1,0 +1,6 @@
+<!--pages/file/file.wxml-->
+<text>pages/file/file.wxml</text>
+
+<button type="primary" plain bindtap="uploadFile">上传图片</button>
+
+<image src="{{imgurl}}"></image>

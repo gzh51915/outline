@@ -64,9 +64,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "user",
-					"pathName": "pages/user/user",
+					"id": 1,
+					"name": "file",
+					"pathName": "pages/file/file",
 					"query": "",
 					"scene": null
 				},
