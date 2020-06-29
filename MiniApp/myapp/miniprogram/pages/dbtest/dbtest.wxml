@@ -1,0 +1,8 @@
+<!--pages/dbtest/dbtest.wxml-->
+<text>pages/dbtest/dbtest.wxml</text>
+
+<button type="primary" plain bindtap="getStudent">请求学生数据</button>
+
+<view wx:for="{{datalist}}" style="padding:20px 10px">
+  {{item.name}}
+</view>
