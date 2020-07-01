@@ -32,6 +32,10 @@ var _default =
   methods: {
     sayHi: function sayHi() {
       this.title = 'Hi';
+      // 小程序使用接口：
+      // wx.navigateTo()
+      // uni-app使用接口：
+      // uni.navigateTo()
     } } };exports.default = _default;
 
 /***/ }),

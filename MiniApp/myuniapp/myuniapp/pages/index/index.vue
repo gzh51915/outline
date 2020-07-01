@@ -21,7 +21,11 @@
 		},
 		methods: {
 			sayHi(){
-				this.title = 'Hi'
+				this.title = 'Hi';
+				// 小程序使用接口：
+				// wx.navigateTo()
+				// uni-app使用接口：
+				// uni.navigateTo()
 			}
 		}
 	}
