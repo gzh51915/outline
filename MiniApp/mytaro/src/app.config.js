@@ -1,11 +1,12 @@
 export default {
   pages: [
-    'pages/index/index'
+    'pages/index/index',
+    'pages/class/class'
   ],
   window: {
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    navigationBarBackgroundColor: '#58bc58',
+    navigationBarTitleText: 'h5班级管理系统',
+    navigationBarTextStyle: 'white'
   }
 }

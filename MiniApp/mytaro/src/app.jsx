@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
+import Taro from '@tarojs/taro'
 import { Provider } from 'react-redux'
 
 import configStore from './store'
 
+import 'taro-ui/dist/style/index.scss'
 import './app.scss'
 
 const store = configStore()
 
 class App extends Component {
-  componentDidMount () {}
+  componentDidMount () {
+    Taro.cloud.init({
+      env: 'qf-52690b'
+    })
+  }
 
   componentDidShow () {}
 

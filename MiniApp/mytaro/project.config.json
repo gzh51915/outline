@@ -1,5 +1,6 @@
 {
   "miniprogramRoot": "./dist",
+  "cloudfunctionRoot":"./server",
   "projectname": "mytaro",
   "description": "班级管理系统",
   "appid": "wx8cf6111b4ab000f2",
