@@ -10,10 +10,44 @@ import './app.scss'
 const store = configStore()
 
 class App extends Component {
-  componentDidMount () {
+  onLaunch(){
     Taro.cloud.init({
       env: 'qf-52690b'
-    })
+    });
+
+  }
+  async componentDidMount () {
+    // 获取用户授权信息
+    const {authSetting} = await Taro.getSetting()
+    if(authSetting['scope.userInfo']){
+        const userInfo = await Taro.getUserInfo();
+        console.log('userInfo=',userInfo)
+
+        Taro.setStorage({
+          key:'userInfo',
+          data:userInfo.userInfo
+        })
+    }else{
+      // 未授权
+      // 主动提示用户授权
+      Taro.authorize({
+        scope: 'scope.userInfo',
+        success: async function () {
+          const userInfo = await Taro.getUserInfo();
+          console.log('userInfo=',userInfo);
+
+          Taro.setStorage({
+            key:'userInfo',
+            data:userInfo.userInfo,
+          })
+        },
+        fail(){
+          Taro.showToast({
+            title:'未授权无法使用小程序相关功能'
+          })
+        }
+      })
+    }
   }
 
   componentDidShow () {}

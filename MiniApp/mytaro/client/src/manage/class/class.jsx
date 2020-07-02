@@ -4,7 +4,6 @@ import { View, Button, Text } from '@tarojs/components'
 import { connect } from 'react-redux'
 import { AtList, AtListItem } from "taro-ui"
 
-import { add, minus, asyncAdd } from '../../actions/counter'
 import { AtButton } from 'taro-ui'
 import {goto} from '../../utils'
 
@@ -94,7 +93,7 @@ class Class extends Component {
                 arrow='right'
                 iconInfo={{ size: 25, color: '#78A4FA', value: 'link', }}
                 onClick={goto.bind(this,'/pages/class/edit',{id:item._id})}
-              />
+              ></AtListItem>
             })
           }
         </AtList>

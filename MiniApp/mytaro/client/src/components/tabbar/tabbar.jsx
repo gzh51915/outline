@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { AtTabBar } from 'taro-ui'
 import { View, Button, Text } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
 
 import './tabbar.scss'
 
@@ -14,6 +13,11 @@ class Tabbar extends Component {
                 title: '班级',
                 iconType: 'list',
                 path: '/pages/class/class'
+            },{
+                title: '我的',
+                iconType: 'user',
+                path: '/pages/mine/mine',
+                // image:'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqOLRiarGt2Y9D0DerKUHduQibWzpPAQGPqiashw4yIPvRzeB4lkhOFs38bibyckqypicwvugibHrKXKElA/132'
             }],
         current:0
     }

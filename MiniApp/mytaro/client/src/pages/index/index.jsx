@@ -1,50 +1,78 @@
 import React, { Component } from 'react'
 import { View, Button, Text } from '@tarojs/components'
-import { connect } from 'react-redux'
 
-import { add, minus, asyncAdd } from '../../actions/counter'
-import {AtButton} from 'taro-ui'
+import { AtButton } from 'taro-ui'
 import Tabbar from '../../components/tabbar/tabbar'
+import { cloudFunction, goto } from '../../utils'
 
 import './index.scss'
 
 // const app = Taro.getApp()
 
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
-  add () {
-    dispatch(add())
-  },
-  dec () {
-    dispatch(minus())
-  },
-  asyncAdd () {
-    dispatch(asyncAdd())
-  }
-}))
 class Index extends Component {
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
+  state = {
+    currentClass: {},
+    studentList: []
+  }
+  async componentDidMount() {
+    // 获取当前班级信息
+    let currentClass = await cloudFunction('class', {
+      type: 'find',
+      query: {
+        is_current: true
+      },
+      options: {
+        total: false
+      }
+    });
+    console.log(currentClass)
+    currentClass = currentClass[0];
+
+    // 根据当前班级，获取所有学生信息
+    const studentList = await cloudFunction('student', {
+      type: 'find',
+      query: {
+        class: currentClass.name
+      },
+      options: {
+        total: false,
+        size: 100
+      }
+    });
+
+    console.log('studentList=', studentList)
+    this.setState({
+      currentClass,
+      studentList
+    })
   }
 
-  componentWillUnmount () { }
+  componentDidShow() { }
 
-  componentDidShow () { }
+  componentDidHide() { }
 
-  componentDidHide () { }
-
-  render () {
+  render() {
+    const { studentList, currentClass } = this.state;
     return (
       <View className='index'>
-        {/* <Button className='add_btn' onClick={this.props.add}>+</Button> */}
-        <AtButton type='primary' className='add_btn' onClick={this.props.add}>+</AtButton>
-        <Button className='dec_btn' onClick={this.props.dec}>-</Button>
-        <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
-        <View><Text>{this.props.counter.num}</Text></View>
-        <View>欢迎来到h5班级管理系统</View>
-
-        <Tabbar/>
+        {/* 显示当前班级信息 */}
+        <View className='at-article'>
+          <View className='at-article__h1'>
+            {currentClass.city}-{currentClass.category}-{currentClass.name}
+          </View>
+          <View className='at-article__info'>
+            总人数：{studentList.length} 人
+          </View>
+        </View>
+        <View className='at-row at-row--wrap'>
+          {
+            studentList.map(item => {
+              return <View key={item._id} className='at-col at-col-4' style={{ padding: '5px 10px' }}>
+                <AtButton size='small' onClick={goto.bind(this,'/manage/student/edit',{id:item._id})}>{item.name}</AtButton></View>
+            })
+          }
+        </View>
+        <Tabbar />
       </View>
     )
   }

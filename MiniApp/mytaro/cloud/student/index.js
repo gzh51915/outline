@@ -9,6 +9,7 @@ const db = cloud.database();
 
 const col = db.collection('student');
 
+// cloud.getWXContext()
 
 
 // 云函数入口函数
@@ -52,7 +53,8 @@ async function remove(id) {
   return col.doc(id).remove();
 }
 
-async function update(id, data) {
+async function update(id, data={}) {
+  data.lastupdate = new Date();
   return col.doc(id).update({
     data
   })
