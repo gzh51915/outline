@@ -6,12 +6,11 @@ import { AtList, AtListItem } from "taro-ui"
 
 import { add, minus, asyncAdd } from '../../actions/counter'
 import { AtButton } from 'taro-ui'
+import {goto} from '../../utils'
 
 import Tabbar from '../../components/tabbar/tabbar'
 
 import './class.scss'
-
-// const app = Taro.getApp()
 
 
 class Class extends Component {
@@ -81,6 +80,7 @@ class Class extends Component {
   }
 
   render() {
+
     const { classlist,hasMore } = this.state;
     return (
       <View className='index' style={{paddingBottom:100}}>
@@ -93,6 +93,7 @@ class Class extends Component {
                 note={item.city}
                 arrow='right'
                 iconInfo={{ size: 25, color: '#78A4FA', value: 'link', }}
+                onClick={goto.bind(this,'/pages/class/edit',{id:item._id})}
               />
             })
           }
