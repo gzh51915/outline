@@ -8,6 +8,8 @@ module.exports = function override(config, env) {
         '~':path.join(__dirname,'./src/components')
     });
 
+    config.output.publicPath = './'
+
     // if(!config.devServer){
     //     config.devServer = {}
     // }

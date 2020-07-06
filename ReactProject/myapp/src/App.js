@@ -3,6 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const startSpeech = () => {
+    // 这里的代码在web端无法使用
+    // 必须打包/真机调试时才能生效
+    window.plus && window.plus.speech.startRecognize({
+      engine: 'iFly',
+      lang: 'zh-cantonese',
+      nbest: 3,
+    }, (result) => {
+      console.log('result=', result);
+      // search.value = result;
+    });
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +30,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={startSpeech}>语音</button>
       </header>
     </div>
   );

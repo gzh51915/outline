@@ -92,6 +92,18 @@
 			// 显示Webview
 			plus.webview.show(pageCamera,'slide-in-right')
 		}
+		
+		
+		const btnSpeech = document.querySelector('#btnSpeech');
+		
+		btnSpeech.onclick = ()=>{
+			// 返回webview对象
+		// 	const pageSpeech = plus.webview.create('views/page-speech.html','pageSpeech');
+		// 
+		// 	// 显示Webview
+		// 	plus.webview.show(pageSpeech,'fade-in')
+			plus.webview.open('views/page-speech.html','pageSpeech',{},'fade-in',2000)
+		}
 
 	  }, false );
   </script>
