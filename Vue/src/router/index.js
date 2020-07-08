@@ -17,7 +17,8 @@ const router = new VueRouter({
         {
             path:'/home',
             name:'home',
-            component:Home
+            component:Home,
+           
         },
         {
             path:'/login',
@@ -41,11 +42,30 @@ const router = new VueRouter({
 })
 
 // 路由拦截
-// router.beforeEach((to,from,next)=>{
-//     // 页面权限访问控制
+router.beforeEach((to,from,next)=>{
+    // 页面权限访问控制
+    if(to.meta.requireAuth){
+        // 判断是否登录
+        if(sessionStorage.getItem('token')){
+        // 校验token是否过期
+           fetch('/verify').then(res=>{
+                if(res.code === 400){
+                    next({
+                        path:'/login'
+                    })
+                }
+            }) 
+            next();
+        }else{
+            next({
+                path:'/login'
+            })
+        }
+    }else{
+        next();
+    }
 
-
-// })
+})
 // router.afterEach()
 
 export default router;
