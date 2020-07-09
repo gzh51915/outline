@@ -135,7 +135,7 @@ TypeScript由微软开发的自由和开源的编程语言，设计目标是开�
 * 类型断言
 
 * 泛型编程
-> 在第一函数、接口或类时不指定类型，使用时才指定类型的编程方式，格式：`Array<元素类型>`
+> 在定义函数、接口或类时不指定类型，使用时才指定类型的编程方式，格式：`Array<元素类型>`
 
 ```ts
     function identity<T>(arg: T): T {
@@ -226,15 +226,13 @@ TypeScript由微软开发的自由和开源的编程语言，设计目标是开�
             isAcceptable(s: string): boolean;
         }
     }
-
     // 使用步骤：
     // 1. 引用文件（三个斜杠）
     /// <reference path="Validation.ts"/>
-
     // 2. 通过点语法调用
     Validation.StringValidator;
 ```
-PS：命名空间最终会被生命为全局对象，所以在typescript中已经不推荐使用，建议使用Module来组织代码结构
+PS：命名空间最终会被声明为全局对象，所以在typescript中已经不推荐使用，建议使用Module来组织代码结构
 
 * 模块
     * CommonJS（默认）
